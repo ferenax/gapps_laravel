@@ -24,4 +24,4 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 ### Further information about the project
 
-This project aims to offer a solution to the beta consumer for a facilitated use of google apps with a simplified and user-friendly amazing front-end. 
+This project aims to offer a solution to the beta consumer for a facilitated use of google apps with a simplified and user-friendly exciting front-end. 
