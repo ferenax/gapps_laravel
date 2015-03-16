@@ -20,20 +20,40 @@ Route::controllers([
 	'password' => 'Auth\PasswordController',
 ]);
 
+*/
 
-Route::bind('song', function($slug){
+Route::bind('songs', function($slug){
 
 	return App\Song::whereSlug($slug)->first();
 
-});
-*/
+}); 
+
 
 Route::get('/', 'PagesController@index');
 
 Route::get('about', 'PagesController@about');
 
-Route::get('songs' , 'SongsController@index');
+/*
+Route::get('songs' , ['as' => 'songs_path' , 'uses' => 'SongsController@index']);
 
-Route::get('songs/{slug}', 'SongsController@show');
+Route::get('songs/{song}', ['as' => 'song_path', 'uses' => 'SongsController@show']);
 
-Route::get('songs/{slug}/edit', 'SongsController@edit');
+Route::get('songs/{song}/edit', 'SongsController@edit');
+
+Route::patch('songs/{song}', 'SongsController@update');
+
+Route::resource('people', 'PeopleController');
+*/
+
+Route::resource('songs', 'SongsController', [
+        'only' => [
+            'index' , 'show'
+
+        ],
+        'names' => [
+            'index' => 'songs_path',
+            'show' => 'song_path'
+
+        ]
+
+]);

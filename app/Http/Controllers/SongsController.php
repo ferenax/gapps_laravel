@@ -24,9 +24,8 @@ class SongsController extends Controller {
 
 
 
-	public function show($slug)
+	public function show(Song $song)
 	{
-		$song = $this->song->whereSlug($slug)->first();
 
 		return view('songs.show', compact('song'));
 
@@ -34,11 +33,18 @@ class SongsController extends Controller {
 
 
 
-	public function edit($slug)
+	public function edit(Song $song)
 	{
-		$song = $this->song->whereSlug($slug)->first();
 
 		return view('songs.edit', compact('song'));
 	}
 
+	public function update(Song $song, Request $request)
+	{
+
+
+		$song->fill($request->input())->save();
+
+		return redirect('songs');
+	}
 }

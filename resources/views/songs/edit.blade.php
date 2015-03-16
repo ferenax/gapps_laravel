@@ -4,7 +4,7 @@
 	
 	<h2> {{ $song->title }} </h2>
 
-	{!! Form::model($song , ['url' => 'http://www.google.com']) !!}
+	{!! Form::model($song , ['url' => '/songs/' . $song->slug , 'method' => 'PATCH']) !!}
 
 		<div class="form-group">
 			{!! Form::text('title', null, ['class' => 'form-control']) !!}
