@@ -46,10 +46,6 @@ Route::resource('people', 'PeopleController');
 */
 
 Route::resource('songs', 'SongsController', [
-        'only' => [
-            'index' , 'show'
-
-        ],
         'names' => [
             'index' => 'songs_path',
             'show' => 'song_path'

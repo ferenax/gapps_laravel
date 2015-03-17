@@ -22,7 +22,19 @@ class SongsController extends Controller {
 		return view('songs.index', compact('songs'));
 	}
 
+    /**
+     * Show a form to create a new song
+     * @return \Illuminate\View\View
+     */
+    public function create(){
+        return view('songs.create');
 
+    }
+
+    public function store(Requests\CreateSongRequest $request, Song $song){
+        $song->create($request->all());
+        return redirect()->route('songs_path');
+    }
 
 	public function show(Song $song)
 	{
@@ -39,7 +51,7 @@ class SongsController extends Controller {
 		return view('songs.edit', compact('song'));
 	}
 
-	public function update(Song $song, Request $request)
+	public function update(Song $song, Requests\CreateSongRequest $request)
 	{
 
 

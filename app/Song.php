@@ -9,7 +9,7 @@ class Song extends Model {
 	 *
 	 * @var array
 	 */
-	protected $fillable = ['title', 'lyrics'];
+	protected $fillable = ['title', 'lyrics', 'slug'];
 
 
 }
