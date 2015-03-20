@@ -28,19 +28,21 @@ class AuthenticateUser {
     }
 
 
-    public function execute($hasCode)
+    /**
+     * @param $hasCode
+     * @param AuthenticateUserListener $listener
+     * @return mixed
+     */
+    public function execute($hasCode, AuthenticateUserListener $listener)
     {
 
         if ( ! $hasCode ) return $this->getAuthorizationFirst();
 
-        $user = $this->socialite->driver('google')->user();
+        $user = $this->users->findByUsernameOrCreate($this->getGoogleUser());
 
+        $this->guard->login($user, true);
 
-        // $this->users->findByUsernameOrCreate($this->getGoogleUser());
-
-
-
-        dd($user);
+        return $listener->userHasLoggedIn($user);
 
     }
 
@@ -53,5 +55,7 @@ class AuthenticateUser {
 
     private function getGoogleUser()
     {
+
+        return $this->socialite->driver('google')->user();
     }
 }
