@@ -1,11 +1,7 @@
 @extends('master')
 
 @section('content')
-
-@foreach($lessons as $lesson)
-
-	<h2> {!! $lesson !!} </h2>
-
-@endforeach
-
+    <div class=" btn btn-primary">
+        Login to your Google Account
+    </div>
 @stop

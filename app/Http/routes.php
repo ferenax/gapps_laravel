@@ -1,7 +1,6 @@
 <?php
 
 
-
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -22,20 +21,30 @@ Route::controllers([
 	'password' => 'Auth\PasswordController',
 ]);
 
-*/
+
 
 Route::bind('songs', function($slug){
 
 	return App\Song::whereSlug($slug)->first();
 
 }); 
+*/
+
+Route::get('/', function() {
 
 
-Route::get('/', 'PagesController@index');
+   if (Auth::check()) return 'Welcome back ' . Auth::user()->username();
 
-Route::get('about', 'PagesController@about');
+    return 'Hi guest.' . link_to('login', 'Login with Google');
+
+});
+
+Route::get('login', 'AuthController@login');
 
 /*
+Route::get('about', 'PagesController@about');
+
+
 Route::get('songs' , ['as' => 'songs_path' , 'uses' => 'SongsController@index']);
 
 Route::get('songs/{song}', ['as' => 'song_path', 'uses' => 'SongsController@show']);
@@ -45,7 +54,7 @@ Route::get('songs/{song}/edit', 'SongsController@edit');
 Route::patch('songs/{song}', 'SongsController@update');
 
 Route::resource('people', 'PeopleController');
-*/
+
 
 Route::resource('songs', 'SongsController', [
         'names' => [
@@ -55,3 +64,4 @@ Route::resource('songs', 'SongsController', [
         ]
 
 ]);
+*/
