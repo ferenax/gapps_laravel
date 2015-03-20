@@ -33,12 +33,12 @@ class AuthenticateUser {
 
         if ( ! $hasCode ) return $this->getAuthorizationFirst();
 
-        $user = \Socialize::with('google')->user();
+        $user = $this->socialite->driver('google')->user();
 
 
+        // $this->users->findByUsernameOrCreate($this->getGoogleUser());
 
 
-        // $user = $this->socialite->driver('google')->user();
 
         dd($user);
 
@@ -49,5 +49,9 @@ class AuthenticateUser {
 
         return \Socialize::with('google')->redirect();
         // return $this->socialite->driver('google')->redirect();
+    }
+
+    private function getGoogleUser()
+    {
     }
 }
