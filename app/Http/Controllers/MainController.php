@@ -9,7 +9,12 @@ class MainController extends Controller {
 
 	public function index()
     {
-        return view('pages.homes');
+        return view('google_login');
+    }
+
+    public function back($user)
+    {
+        return view('google_welcomeback')->with('user', $user);
     }
 
 }

@@ -15,12 +15,16 @@
 Route::get('/', function() {
 
 
-   if (Auth::check()) return 'Welcome back ' . Auth::user()->username;
-
-    return 'Hi guest.' . link_to('login', 'Login with Google');
+  //  if (Auth::check()) return 'Welcome back ' . Auth::user()->username;
+    if (Auth::check()) return redirect('google_welcome');
+    return redirect('google_login');
 
 });
 
+Route::get('google_login', 'MainController@index');
 Route::get('login', 'AuthController@login');
+Route::get('google_welcome', function(){
+    $user = Auth::user()->username;
+    return View::make('google_welcomeback',['user' => $user]);
 
-
+});
