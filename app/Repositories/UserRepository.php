@@ -5,7 +5,7 @@ class UserRepository {
 
     public function findByUsernameOrCreate($userData)
     {
-        dd($userData);
+
         return User::firstOrCreate([
 
             'username' => $userData->name,

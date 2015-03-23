@@ -20,4 +20,11 @@ class AuthController extends Controller implements AuthenticateUserListener
 
         return redirect('/');
     }
+
+    public function logout(AuthenticateUser $authenticateUser){
+
+
+        return $authenticateUser->logout();
+
+    }
 }

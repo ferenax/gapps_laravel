@@ -44,13 +44,26 @@ class AuthenticateUser {
 
         return $listener->userHasLoggedIn($user);
 
+
+    }
+
+    public function logout()
+    {
+
+        $this->guard->logout();
+
+        \Session::flush();
+
+        return redirect('/');
+
+
     }
 
     private function getAuthorizationFirst()
     {
 
-        return \Socialize::with('google')->redirect();
-        // return $this->socialite->driver('google')->redirect();
+        return $this->socialite->driver('google')->redirect();
+
     }
 
     private function getGoogleUser()
