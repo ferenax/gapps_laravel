@@ -25,7 +25,7 @@ Route::get('google_login', 'MainController@index');
 Route::get('login', 'AuthController@login');
 Route::get('logout', 'AuthController@logout');
 Route::get('google_welcome', function(){
-    $user = Auth::user()->username;
+    $user = Auth::user();
     return View::make('google_welcomeback',['user' => $user]);
 
 });

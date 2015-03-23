@@ -52,8 +52,6 @@ class AuthenticateUser {
 
         $this->guard->logout();
 
-        \Session::flush();
-
         return redirect('/');
 
 
