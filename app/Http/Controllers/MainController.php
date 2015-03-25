@@ -9,6 +9,7 @@ class MainController extends Controller {
 
 	public function index()
     {
+        \Session::flush();
         return view('google_login');
     }
 

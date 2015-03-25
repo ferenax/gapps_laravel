@@ -8,10 +8,10 @@ class UserRepository {
 
         return User::firstOrCreate([
 
-            'username' => $userData->name,
-            'email' => $userData->email,
-            'avatar' => $userData->avatar,
-            'gid' => $userData->id,
+            'username' => $userData->getName(),
+            'email' => $userData->getEmail(),
+            'avatar' => $userData->getAvatar(),
+            'gid' => $userData->getId(),
 
 
         ]);

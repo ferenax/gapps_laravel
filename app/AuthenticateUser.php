@@ -60,13 +60,15 @@ class AuthenticateUser {
     private function getAuthorizationFirst()
     {
 
-        return $this->socialite->driver('google')->redirect();
+      //  return $this->socialite->driver('google')->redirect();
+        return \Socialize::with('google')->redirect();
 
     }
 
     private function getGoogleUser()
     {
 
-        return $this->socialite->driver('google')->user();
+       // return $this->socialite->driver('google')->user();
+        return \Socialize::with('google')->user();
     }
 }
