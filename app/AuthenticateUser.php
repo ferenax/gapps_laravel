@@ -3,6 +3,7 @@ namespace App;
 use Laravel\Socialite\Contracts\Factory as Socialite;
 use App\Repositories\UserRepository;
 use Illuminate\Contracts\Auth\Guard;
+use Illuminate\Http\Request;
 
 class AuthenticateUser {
 
@@ -17,14 +18,14 @@ class AuthenticateUser {
     /**
      * @var Guard
      */
-    private $guard;
+    private $auth;
 
-    public function __construct(UserRepository $users, Socialite $socialite, Guard $guard)
+    public function __construct(UserRepository $users, Socialite $socialite, Guard $auth)
     {
 
         $this->users = $users;
         $this->socialite = $socialite;
-        $this->guard = $guard;
+        $this->guard = $auth;
     }
 
 
@@ -33,14 +34,14 @@ class AuthenticateUser {
      * @param AuthenticateUserListener $listener
      * @return mixed
      */
-    public function execute($hasCode, AuthenticateUserListener $listener)
+    public function execute($request, AuthenticateUserListener $listener)
     {
 
-        if ( ! $hasCode ) return $this->getAuthorizationFirst();
+        if ( ! $request ) return $this->getAuthorizationFirst();
 
         $user = $this->users->findByUsernameOrCreate($this->getGoogleUser());
 
-        $this->guard->login($user, true);
+        $this->auth->login($user, true);
 
         return $listener->userHasLoggedIn($user);
 
@@ -50,7 +51,7 @@ class AuthenticateUser {
     public function logout()
     {
 
-        $this->guard->logout();
+        $this->auth->logout();
 
         return redirect('/');
 

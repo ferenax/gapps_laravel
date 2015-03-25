@@ -12,12 +12,12 @@ class AuthController extends Controller implements AuthenticateUserListener
 
 	public function login(AuthenticateUser $authenticateUser, Request $request){
 
-       return $authenticateUser->execute($request->has('code'), $this);
+       return $authenticateUser->execute($request->all(), $this);
     }
 
     public function userHasLoggedIn($user)
     {
-
+        \Session::flash('message', 'Welcome, ' . $user->name);
         return redirect('/');
     }
 
