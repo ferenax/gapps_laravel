@@ -5,5 +5,5 @@
         <p> Email : {{ $user->email }} </p>
         <p> ID : {{ $user->gid }} </p>
         <p><img src = "{{ $user->avatar }}" alt="Avatar" ></img></p>
-        <p>{!! link_to('logout', 'Logout'); !!}</p>
+        <a href="/logout" class="negative ui button">Logout</a>
 @stop

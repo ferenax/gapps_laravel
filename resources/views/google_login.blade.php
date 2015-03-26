@@ -3,6 +3,10 @@
 @section('content')
 
     <p>Hi guest, welcome to our website</p>
-    <p>{!! link_to('login', 'Login with Google'); !!}</p>
+    <a href="/login" class="ui google plus button">
+        <i class="google plus icon"></i>
+        Login with Google
+    </a>
+
 
 @stop
