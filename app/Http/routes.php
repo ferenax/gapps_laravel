@@ -22,3 +22,5 @@ Route::get('logout', 'AuthController@logout');
 
 Route::get('google_welcome', 'MainController@back');
 
+Route::get('contact_list' , 'AuthController@getContactList');
+

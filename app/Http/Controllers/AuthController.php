@@ -4,6 +4,7 @@ use App\AuthenticateUser;
 use App\AuthenticateUserListener;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Laravel\Socialite\Two\GoogleProvider as Google;
 
 use Illuminate\Http\Request;
 
@@ -26,5 +27,12 @@ class AuthController extends Controller implements AuthenticateUserListener
 
         return $authenticateUser->logout();
 
+    }
+
+    public function getContactList()
+    {
+        $response = $authenticateUser->getContactList();
+
+        dd($response);
     }
 }

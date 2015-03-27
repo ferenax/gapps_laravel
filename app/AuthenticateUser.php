@@ -4,6 +4,7 @@ use Laravel\Socialite\Contracts\Factory as Socialite;
 use App\Repositories\UserRepository;
 use Illuminate\Contracts\Auth\Guard;
 
+
 class AuthenticateUser {
 
     /**
@@ -18,6 +19,8 @@ class AuthenticateUser {
      * @var Guard
      */
     private $guard;
+
+    private $token;
 
     public function __construct(UserRepository $users, Socialite $socialite, Guard $guard)
     {
@@ -40,17 +43,17 @@ class AuthenticateUser {
 
         $user = $this->users->findByUsernameOrCreate($this->getGoogleUser());
 
-        $this->guard->login($user, true);
+        \Auth::login($user, true);
 
         return $listener->userHasLoggedIn($user);
-
 
     }
 
     public function logout()
     {
 
-        $this->guard->logout();
+        \Auth::logout();
+      //  $this->guard->logout();
 
         return redirect('/');
 
@@ -68,5 +71,28 @@ class AuthenticateUser {
     {
 
         return \Socialize::with('google')->user();
+    }
+
+    public function getContactList()
+    {
+
+        $client = new \GuzzleHttp\Client();
+
+        $email = \Auth::user()->email;
+
+        $json = $client->get('https://www.google.com/m8/feeds/contacts/'. $email . '/full', [
+            'query' => [
+                'prettyPrint' => 'false',
+            ],
+            'headers' => [
+                'Accept' => 'application/json',
+                'Authorization' => 'Bearer ' . $this->getGoogleUser()->token ,
+            ],
+        ]);
+
+        dd($json);
+
+        return $json;
+
     }
 }
