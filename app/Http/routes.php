@@ -12,25 +12,13 @@
 |
 */
 
-Route::get('/', function() {
+Route::get('/', 'MainController@index');
 
-    // dd(Auth::getUser());
-  //  if (Auth::check()) return 'Welcome back ' . Auth::user()->username;
-    if (Auth::check()) return redirect('google_welcome');
-    return redirect('google_login');
-
-});
-
-
-Route::get('google_login', 'MainController@index');
+Route::get('google_login', 'MainController@first');
 
 Route::get('login', 'AuthController@login');
 
 Route::get('logout', 'AuthController@logout');
 
-Route::get('google_welcome', function(){
+Route::get('google_welcome', 'MainController@back');
 
-    $user = Auth::user();
-    return View::make('google_welcomeback',['user' => $user]);
-
-});
