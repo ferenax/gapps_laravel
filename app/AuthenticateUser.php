@@ -2,8 +2,6 @@
 namespace App;
 use Laravel\Socialite\Contracts\Factory as Socialite;
 use App\Repositories\UserRepository;
-use Illuminate\Contracts\Auth\Guard;
-
 
 class AuthenticateUser {
 
@@ -15,21 +13,12 @@ class AuthenticateUser {
      * @var Socialite
      */
     private $socialite;
-    /**
-     * @var Guard
-     */
-    private $guard;
 
-    private $token;
-
-    public function __construct(UserRepository $users, Socialite $socialite, Guard $guard)
+    public function __construct(UserRepository $users, Socialite $socialite)
     {
-
         $this->users = $users;
         $this->socialite = $socialite;
-        $this->guard = $guard;
     }
-
 
     /**
      * @param $hasCode
@@ -76,27 +65,4 @@ class AuthenticateUser {
         return \Socialize::with('google')->user();
     }
 
-    public function getContactList()
-    {
-
-        $client = new \GuzzleHttp\Client();
-
-        $email = \Auth::user()->email;
-
-        $token = \Session::get('token');
-
-        $json = $client->get('https://www.google.com/m8/feeds/contacts/default/full/',  [
-
-            'headers' => [
-                'Accept' => 'application/atom+xml',
-                'Authorization' => 'Bearer ' . $token,
-
-            ],
-        ]);
-
-        dd($json->getBody()->__toString());
-
-        return $json;
-
-    }
 }

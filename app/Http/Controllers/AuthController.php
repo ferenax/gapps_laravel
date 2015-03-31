@@ -1,11 +1,10 @@
 <?php namespace App\Http\Controllers;
 
 use App\AuthenticateUser;
+use App\ApiCall;
 use App\AuthenticateUserListener;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use Laravel\Socialite\Two\GoogleProvider as Google;
-
 use Illuminate\Http\Request;
 
 class AuthController extends Controller implements AuthenticateUserListener
@@ -29,9 +28,9 @@ class AuthController extends Controller implements AuthenticateUserListener
 
     }
 
-    public function getContactList(AuthenticateUser $authenticateUser)
+    public function getContactList(ApiCall $apiCall)
     {
-        $response = $authenticateUser->getContactList();
+        $response = $apiCall->getContactList();
 
         dd($response);
     }
