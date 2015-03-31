@@ -41,7 +41,11 @@ class AuthenticateUser {
 
         if ( ! $hasCode ) return $this->getAuthorizationFirst();
 
-        $user = $this->users->findByUsernameOrCreate($this->getGoogleUser());
+        $var = $this->getGoogleUser();
+
+        $user = $this->users->findByUsernameOrCreate($var);
+
+        \Session::put('token', $var->token );
 
         \Auth::login($user, true);
 
@@ -53,7 +57,6 @@ class AuthenticateUser {
     {
 
         \Auth::logout();
-      //  $this->guard->logout();
 
         return redirect('/');
 
@@ -80,17 +83,18 @@ class AuthenticateUser {
 
         $email = \Auth::user()->email;
 
-        $json = $client->get('https://www.google.com/m8/feeds/contacts/'. $email . '/full', [
-            'query' => [
-                'prettyPrint' => 'false',
-            ],
+        $token = \Session::get('token');
+
+        $json = $client->get('https://www.google.com/m8/feeds/contacts/default/full/',  [
+
             'headers' => [
-                'Accept' => 'application/json',
-                'Authorization' => 'Bearer ' . $this->getGoogleUser()->token ,
+                'Accept' => 'application/atom+xml',
+                'Authorization' => 'Bearer ' . $token,
+
             ],
         ]);
 
-        dd($json);
+        dd($json->getBody()->__toString());
 
         return $json;
 

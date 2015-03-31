@@ -29,7 +29,7 @@ class AuthController extends Controller implements AuthenticateUserListener
 
     }
 
-    public function getContactList()
+    public function getContactList(AuthenticateUser $authenticateUser)
     {
         $response = $authenticateUser->getContactList();
 

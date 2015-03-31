@@ -16,7 +16,6 @@ class MainController extends Controller {
 
 	public function first()
     {
-        \Session::flush();
         return view('google_login');
     }
 
