@@ -1,4 +1,32 @@
 body {
+    background: white;
+}
 
+.sitebanner {
+    padding: 8px;
+    background: #F7F7F7;
+    border-bottom: 1px solid #eee;
+}
 
+.homelink {
+    margin-top: 10px;
+    font-weight: 500;
+    font-size: 30px;
+    color: #63666A;
+}
+
+.bannerright {
+    margin-top: 9px!important;
+}
+
+.signout {
+    color:#63666A;
+}
+
+.signout:hover {
+    color:#63666A;
+    text-decoration: underline;
+}
+.banneravatar {
+    margin-left: 8px;
 }

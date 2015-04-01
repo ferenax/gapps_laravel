@@ -4,34 +4,30 @@ use App\AuthenticateUser;
 use App\ApiCall;
 use App\AuthenticateUserListener;
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class AuthController extends Controller implements AuthenticateUserListener
 {
 
-	public function login(AuthenticateUser $authenticateUser, Request $request){
-
+	public function login(AuthenticateUser $authenticateUser, Request $request)
+    {
        return $authenticateUser->execute($request->has('code'), $this);
     }
 
     public function userHasLoggedIn($user)
     {
-
         return redirect('/');
     }
 
-    public function logout(AuthenticateUser $authenticateUser){
-
-
+    public function logout(AuthenticateUser $authenticateUser)
+    {
         return $authenticateUser->logout();
-
     }
 
     public function getContactList(ApiCall $apiCall)
     {
         $response = $apiCall->getContactList();
 
-        dd($response);
+       return view('pages.contactlist')->with('response', $response->getBody()->__toString());
     }
 }
