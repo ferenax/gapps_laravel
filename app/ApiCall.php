@@ -26,7 +26,7 @@ class ApiCall {
 
         $token = \Session::get('token');
 
-        $response = $this->client->get('https://www.google.com/m8/feeds/contacts/default/full/?max-results=200&alt=json',  [
+        $response = $this->client->get('https://www.google.com/m8/feeds/contacts/default/full/?max-results=500&alt=json', [
 
             'headers' => [
                 'Authorization' => 'Bearer ' . $token,

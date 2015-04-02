@@ -1,7 +1,11 @@
 @extends('master')
 
+@section('banners')
+    <img class="ui image" src="images/gapps_banner.jpg">
+@stop
+
 @section('content')
-    <div class="ui message messagecentered">
+    <div class="ui message">
         <div class="header">
             Bienvenue
         </div>

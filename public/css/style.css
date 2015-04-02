@@ -2,46 +2,46 @@ body {
     background: white;
 }
 
-.sitebanner {
+#siteBanner {
     width: 100%;
     padding: 8px;
     background: #F7F7F7;
     border-bottom: 1px solid #eee;
 }
 
-.sitecontent {
+#siteContent {
     padding-top: 70px!important;
-    height: 100%;
 }
 
-.homelink {
+.siteBody {
+    padding-top: 20px!important;
+}
+
+.homeLink {
     margin-top: 10px;
     font-weight: 500;
     font-size: 30px;
     color: #63666A;
 }
 
-.bannerright {
-    margin-top: 9px!important;
+.bannerRight {
+    margin-top: 8px!important;
 }
 
-.signout {
+#signOut {
     color:#63666A;
 }
 
-.signout:hover {
+#signOut:hover {
     color:#63666A;
     text-decoration: underline;
 }
 
-.banneravatar {
+#bannerAvatar {
     margin-left: 8px;
 }
 
-/*
-Temporary css to center contents of message
-*/
-.messagecentered {
-    margin-top: 30%!important;
-
+@media all and (max-width: 630px) {
+    #siteBanner{display: none!important;}
+    
 }
