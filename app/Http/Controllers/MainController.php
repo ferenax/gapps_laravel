@@ -18,8 +18,8 @@ class MainController extends Controller {
 
     public function back()
     {
-        $user = \Auth::user();
-        return view('google_welcomeback')->with('user', $user);
+
+        return view('google_welcomeback')->with('user', \Auth::user());
     }
 
 }

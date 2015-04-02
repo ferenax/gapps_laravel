@@ -1,12 +1,10 @@
 @extends('master')
 
 @section('content')
-
-    <p>Hi guest, welcome to our website</p>
-    <a href="/login" class="ui google plus button">
-        <i class="google plus icon"></i>
-        Login with Google
-    </a>
-
-
+    <div class="ui message messagecentered">
+        <div class="header">
+            Bienvenue
+        </div>
+        <p>Votre tableau de bord Google Apps For Work est en cours de construction. En attendant, vous pouvez accédez aux diverses fonctionnalités déjà disponibles.</p>
+    </div>
 @stop

@@ -7,7 +7,7 @@
 </head>
 <body>
 @include('sections.header')
-<div class="ui page grid">
+<div class="ui page grid sitecontent">
     <div class ="row">
         <div class ="column">
 @yield('content')

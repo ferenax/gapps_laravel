@@ -5,6 +5,9 @@ class UserRepository {
 
     public function findByUsernameOrCreate($userData)
     {
+        $user = User::where('email', '=', $userData->email)->first();
+
+        $this->checkIfUserNeedsUpdating($userData, $user);
 
         return User::firstOrCreate([
 
@@ -16,9 +19,28 @@ class UserRepository {
 
         ]);
 
+    }
 
+    private function checkIfUserNeedsUpdating($data, $user)
+    {
+        $socialData = [
+            'avatar' => $data->avatar,
+            'email' => $data->email,
+            'name' => $data->name,
+        ];
 
-
+        $dbData = [
+            'avatar' => $user->avatar,
+            'email' => $user->email,
+            'name' => $user->name,
+        ];
+        $differences = array_diff($socialData, $dbData);
+        if (! empty($differences)) {
+            $user->avatar = $data->avatar;
+            $user->email = $data->email;
+            $user->username = $data->name;
+            $user->save();
+        }
     }
 
 }

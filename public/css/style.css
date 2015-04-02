@@ -3,9 +3,15 @@ body {
 }
 
 .sitebanner {
+    width: 100%;
     padding: 8px;
     background: #F7F7F7;
     border-bottom: 1px solid #eee;
+}
+
+.sitecontent {
+    padding-top: 70px!important;
+    height: 100%;
 }
 
 .homelink {
@@ -27,6 +33,15 @@ body {
     color:#63666A;
     text-decoration: underline;
 }
+
 .banneravatar {
     margin-left: 8px;
+}
+
+/*
+Temporary css to center contents of message
+*/
+.messagecentered {
+    margin-top: 30%!important;
+
 }
