@@ -26,13 +26,22 @@ class AuthController extends Controller implements AuthenticateUserListener
 
     public function getContactList(ApiCall $apiCall)
     {
-        $response = $apiCall->getContactList()->getBody()->__toString();
+        $response = $apiCall->getContactList()->getBody();
 
         $JSONarray=json_decode($response,true);
-
-        //dd($JSONarray);
 
        return view('pages.contactlist')->with('response', $JSONarray);
 
     }
+
+    public function getDriveFileList(ApiCall $apiCall)
+    {
+        $response = $apiCall->getDriveFileList()->getBody();
+
+        $JSONarray=json_decode($response,true);
+
+        return view('pages.drivefilelist')->with('response', $JSONarray);
+
+    }
+
 }

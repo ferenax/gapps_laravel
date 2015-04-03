@@ -6,4 +6,5 @@
     <p> ID : {{ $user->gid }} </p>
     <p><img src = "{{ $user->avatar }}" alt="Avatar" ></img></p>
     <a href="/contact_list" class="positive ui button">Get my Contact list</a>
+    <a href="/drive_filelist" class="positive ui button">Get my Google Drive Filelist</a>
 @stop

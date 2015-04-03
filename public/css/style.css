@@ -24,6 +24,13 @@ body {
     color: #63666A;
 }
 
+.homeLink {
+    margin-top: 10px;
+    font-weight: 500;
+    font-size: 30px;
+    color: #63666A;
+}
+
 .bannerRight {
     margin-top: 8px!important;
 }
@@ -39,6 +46,7 @@ body {
 
 #bannerAvatar {
     margin-left: 8px;
+    margin-top: 2px;
 }
 
 @media all and (max-width: 630px) {

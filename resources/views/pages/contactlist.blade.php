@@ -13,7 +13,12 @@
                 <div class="ui segment">
                     <div class="ui list">
                         @if(!empty($p['title']['$t']))
-                        <div class="item">{{ $p['title']['$t']   }}</div>
+                        <div class="item">
+                            <div class="ui header" >
+                                <i class="user icon"></i>
+                                <div class="content"><h4 class="ui header">{{ $p['title']['$t'] }}</h4></div>
+                            </div>
+                        </div>
                         @endif
                         @if(isset($p['gd$phoneNumber']))
                         <div class="item">
