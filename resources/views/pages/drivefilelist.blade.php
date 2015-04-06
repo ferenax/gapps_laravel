@@ -52,37 +52,13 @@
                                     </div>
                                 </div>
                             @endif
-
                         </div>
                     </div>
                 </div>
             @endforeach
         </div>
-        <div class="ui pagination menu">
-            <a class="icon item">
-                <i class="left arrow icon"></i>
-            </a>
-            <a class="active item">
-                1
-            </a>
-            <div class="disabled item">
-                ...
-            </div>
-            <a class="item">
-                10
-            </a>
-            <a class="item">
-                11
-            </a>
-            <a class="item">
-                12
-            </a>
-            <a class="icon item">
-                <i class="right arrow icon"></i>
-            </a>
-        </div>
     @else
-        <p>No contacts</p>
+        <p>No files</p>
     @endif
 
 @stop

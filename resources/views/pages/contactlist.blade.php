@@ -46,7 +46,7 @@
         @endforeach
     </div>
 @else
-      <p>No contacts</p>
+    <div class="ui red message">No contact entry for {{\Auth::user()->email}}</div>
 @endif
 
 @stop

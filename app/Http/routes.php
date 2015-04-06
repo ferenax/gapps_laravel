@@ -22,6 +22,6 @@ Route::get('logout', 'AuthController@logout');
 
 Route::get('google_welcome', 'MainController@back');
 
-Route::get('contact_list' , 'AuthController@getContactList');
+Route::get('contact_list' , 'ApiController@getContactList');
 
-Route::get('drive_filelist' , 'AuthController@getDriveFileList');
+Route::get('drive_filelist' , 'ApiController@getDriveFileList');

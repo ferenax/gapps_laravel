@@ -6,7 +6,11 @@
     <link rel="stylesheet" href="/css/style.css"/>
 </head>
 <body>
+
 @include('sections.header')
+@if(\Auth::check())
+@include('sections.sidebar')
+@endif
 <div id="siteContent">
     @yield('banners')
     <div class="ui page grid">
@@ -21,7 +25,14 @@
 <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="/semantic/semantic.min.js" type="text/javascript"></script>
 
-<script type="text/javascript">
+<script>
+
+    $("#tog").click(function() {
+        $('.left.sidebar')
+                .sidebar('setting', 'transition', 'overlay')
+                .sidebar('setting', { dimPage: false })
+                .sidebar('toggle');
+    });
 
 </script>
 </body>

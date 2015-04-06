@@ -17,4 +17,9 @@ class Helpers {
         return($num);
     }
 
+    public function fullsize_avatar($url){
+        $url = explode("?", $url);
+        return $url[0];
+    }
+
 }

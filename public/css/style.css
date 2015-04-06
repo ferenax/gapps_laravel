@@ -2,6 +2,14 @@ body {
     background: white;
 }
 
+body.pushable>.pusher {
+    background: white!important;
+}
+
+.menuButton {
+    position: absolute;
+}
+
 #siteBanner {
     width: 100%;
     padding: 8px;
@@ -10,11 +18,15 @@ body {
 }
 
 #siteContent {
-    padding-top: 70px!important;
+    padding-top: 90px!important;
 }
 
 .siteBody {
     padding-top: 20px!important;
+}
+
+#siteSidebar {
+    padding-top: 70px!important;
 }
 
 .homeLink {
@@ -22,6 +34,10 @@ body {
     font-weight: 500;
     font-size: 30px;
     color: #63666A;
+}
+
+#appsfw {
+    margin-top:2px;
 }
 
 .homeLink {

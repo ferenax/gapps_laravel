@@ -1,13 +1,21 @@
 
 <div id="siteBanner" class="ui fixed sticky top">
+<div id="tog" class="menuButton">
+    <div class="ui big animated button">
+        <div class="visible content"><i class="content icon"></i></div>
+        <div class="hidden content">
+            Menu
+        </div>
+    </div>
+</div>
     <div class="ui page grid">
         <div class ="row">
-            <div class="one column row">
+            <div class="three column row">
                 <div class="left floated right aligned column">
                     <h2 class="ui header">
                         <a href="/"><img class="homeLink" alt="Google" src="//www.google.com/images/logos/google_logo_41.png" >
                         <div class="content homeLink">
-                            Apps For Work
+                            <div id="appsfw">Apps For Work</div>
                         </div>
                         </a>
                     </h2>
