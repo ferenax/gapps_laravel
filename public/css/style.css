@@ -1,4 +1,71 @@
 body {
+    background: white;
+}
 
+body.pushable>.pusher {
+    background: white!important;
+}
 
+.menuButton {
+    position: absolute;
+}
+
+#siteBanner {
+    width: 100%;
+    padding: 8px;
+    background: #F7F7F7;
+    border-bottom: 1px solid #eee;
+}
+
+#siteContent {
+    padding-top: 90px!important;
+}
+
+.siteBody {
+    padding-top: 20px!important;
+}
+
+#siteSidebar {
+    padding-top: 70px!important;
+}
+
+.homeLink {
+    margin-top: 10px;
+    font-weight: 500;
+    font-size: 30px;
+    color: #63666A;
+}
+
+#appsfw {
+    margin-top:2px;
+}
+
+.homeLink {
+    margin-top: 10px;
+    font-weight: 500;
+    font-size: 30px;
+    color: #63666A;
+}
+
+.bannerRight {
+    margin-top: 8px!important;
+}
+
+#signOut {
+    color:#63666A;
+}
+
+#signOut:hover {
+    color:#63666A;
+    text-decoration: underline;
+}
+
+#bannerAvatar {
+    margin-left: 8px;
+    margin-top: 2px;
+}
+
+@media all and (max-width: 630px) {
+    #siteBanner{display: none!important;}
+    
 }

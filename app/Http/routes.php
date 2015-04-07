@@ -12,22 +12,14 @@
 |
 */
 
-Route::get('/', function() {
-
-
-  //  if (Auth::check()) return 'Welcome back ' . Auth::user()->username;
-    if (Auth::check()) return redirect('google_welcome');
-    return redirect('google_login');
-
-});
-
-Route::get('google_login', 'MainController@index');
 Route::get('login', 'AuthController@login');
+
 Route::get('logout', 'AuthController@logout');
 
+Route::get('/', 'MainController@index');
 
-Route::get('google_welcome', function(){
-    $user = Auth::user();
-    return View::make('google_welcomeback',['user' => $user]);
+Route::get('dashboard', 'MainController@dashboard');
 
-});
+Route::get('contact_list' , 'ApiController@getContactList');
+
+Route::get('drive_filelist' , 'ApiController@getDriveFileList');

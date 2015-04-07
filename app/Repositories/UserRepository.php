@@ -5,48 +5,43 @@ class UserRepository {
 
     public function findByUsernameOrCreate($userData)
     {
-        $user = User::where('id', '=', $userData->id)->first();
+        $user = User::where('email', '=', $userData->email)->first();
 
-        if(!$user)
-        {
+        if(isset($user)) $this->checkIfUserNeedsUpdating($userData, $user);
 
-            User::create([
+        return User::firstOrCreate([
 
-                'gid' => $userData->id,
-                'name' => $userData->name,
-                'email' => $userData->email,
-                'avatar' => $userData->avatar,
-                'active' => 1,
+            'username' => $userData->getName(),
+            'email' => $userData->getEmail(),
+            'avatar' => $userData->getAvatar(),
+            'gid' => $userData->getId(),
+
+        ]);
 
 
-            ]);
-        }
-
-        $this->checkIfUserNeedsUpdating($userData, $user);
-
-        return $user;
 
     }
 
-    public function checkIfUserNeedsUpdating($userData, $user) {
-
+    private function checkIfUserNeedsUpdating($data, $user)
+    {
         $socialData = [
-            'avatar' => $userData->avatar,
-            'email' => $userData->email,
-            'name' => $userData->name,
+            'avatar' => $data->avatar,
+            'email' => $data->email,
+            'name' => $data->name,
         ];
+
         $dbData = [
             'avatar' => $user->avatar,
             'email' => $user->email,
-            'name' => $user->name,
+            'name' => $user->username,
         ];
-
-        if (!empty(array_diff($socialData, $dbData))) {
-            $user->avatar = $userData->avatar;
-            $user->email = $userData->email;
-            $user->name = $userData->name;
+        $differences = array_diff($socialData, $dbData);
+        if (! empty($differences)) {
+            $user->avatar = $data->avatar;
+            $user->email = $data->email;
+            $user->username = $data->name;
             $user->save();
         }
     }
-}
 
+}

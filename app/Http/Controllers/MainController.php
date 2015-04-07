@@ -1,21 +1,19 @@
 <?php namespace App\Http\Controllers;
 
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
-
-use Illuminate\Http\Request;
 
 class MainController extends Controller {
 
-	public function index()
+
+    public function index()
     {
-        \Session::flush();
+        if (\Auth::check()) return view('google_welcomeback')->with('user', \Auth::user());
         return view('google_login');
     }
 
-    public function back($user)
+    public function dashboard()
     {
-        return view('google_welcomeback')->with('user', $user);
+        return view('pages.dashboard');
     }
 
 }

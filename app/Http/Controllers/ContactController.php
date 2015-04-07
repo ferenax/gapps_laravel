@@ -5,7 +5,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
-class PeopleController extends Controller {
+class ContactController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
@@ -14,7 +14,7 @@ class PeopleController extends Controller {
 	 */
 	public function index()
 	{
-		return 'all people in my company';
+		//
 	}
 
 	/**
@@ -24,7 +24,7 @@ class PeopleController extends Controller {
 	 */
 	public function create()
 	{
-		return 'created people for my company';
+		//
 	}
 
 	/**
@@ -45,7 +45,7 @@ class PeopleController extends Controller {
 	 */
 	public function show($id)
 	{
-		return 'showing the person with the id :' . $id;
+		//
 	}
 
 	/**

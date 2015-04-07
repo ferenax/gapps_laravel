@@ -146,6 +146,7 @@ return [
 		'App\Providers\ConfigServiceProvider',
 		'App\Providers\EventServiceProvider',
 		'App\Providers\RouteServiceProvider',
+        'App\Providers\HelpersServiceProvider',
 
 
 	],
@@ -197,6 +198,7 @@ return [
 		'View'      => 'Illuminate\Support\Facades\View',
 		'Form'		=> 'Illuminate\Html\FormFacade',
         'Socialize' => 'Laravel\Socialite\Facades\Socialite',
+        'Helpers'   => 'App\Facades\Helpers',
 
 	],
 

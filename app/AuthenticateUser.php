@@ -2,8 +2,6 @@
 namespace App;
 use Laravel\Socialite\Contracts\Factory as Socialite;
 use App\Repositories\UserRepository;
-use Illuminate\Contracts\Auth\Guard;
-use Illuminate\Http\Request;
 
 class AuthenticateUser {
 
@@ -15,43 +13,39 @@ class AuthenticateUser {
      * @var Socialite
      */
     private $socialite;
-    /**
-     * @var Guard
-     */
-    private $auth;
 
-    public function __construct(UserRepository $users, Socialite $socialite, Guard $auth)
+    public function __construct(UserRepository $users, Socialite $socialite)
     {
-
         $this->users = $users;
         $this->socialite = $socialite;
-        $this->guard = $auth;
     }
-
 
     /**
      * @param $hasCode
      * @param AuthenticateUserListener $listener
      * @return mixed
      */
-    public function execute($request, AuthenticateUserListener $listener)
+    public function execute($hasCode, AuthenticateUserListener $listener)
     {
 
-        if ( ! $request ) return $this->getAuthorizationFirst();
+        if ( ! $hasCode ) return $this->getAuthorizationFirst();
 
-        $user = $this->users->findByUsernameOrCreate($this->getGoogleUser());
+        $var = $this->getGoogleUser();
 
-        $this->auth->login($user, true);
+        $user = $this->users->findByUsernameOrCreate($var);
+
+        \Session::put('token', $var->token );
+
+        \Auth::login($user, true);
 
         return $listener->userHasLoggedIn($user);
-
 
     }
 
     public function logout()
     {
 
-        $this->auth->logout();
+        \Auth::logout();
 
         return redirect('/');
 
@@ -61,7 +55,6 @@ class AuthenticateUser {
     private function getAuthorizationFirst()
     {
 
-      //  return $this->socialite->driver('google')->redirect();
         return \Socialize::with('google')->redirect();
 
     }
@@ -69,7 +62,7 @@ class AuthenticateUser {
     private function getGoogleUser()
     {
 
-       // return $this->socialite->driver('google')->user();
         return \Socialize::with('google')->user();
     }
+
 }
