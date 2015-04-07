@@ -7,7 +7,7 @@ class UserRepository {
     {
         $user = User::where('email', '=', $userData->email)->first();
 
-        $this->checkIfUserNeedsUpdating($userData, $user);
+        if(isset($user)) $this->checkIfUserNeedsUpdating($userData, $user);
 
         return User::firstOrCreate([
 
@@ -16,8 +16,9 @@ class UserRepository {
             'avatar' => $userData->getAvatar(),
             'gid' => $userData->getId(),
 
-
         ]);
+
+
 
     }
 
@@ -32,7 +33,7 @@ class UserRepository {
         $dbData = [
             'avatar' => $user->avatar,
             'email' => $user->email,
-            'name' => $user->name,
+            'name' => $user->username,
         ];
         $differences = array_diff($socialData, $dbData);
         if (! empty($differences)) {

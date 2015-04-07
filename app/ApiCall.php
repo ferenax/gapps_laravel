@@ -16,6 +16,8 @@ class ApiCall {
      */
     private $client;
 
+
+
     public function __construct()
     {
         $this->client= new \GuzzleHttp\Client();
@@ -23,24 +25,20 @@ class ApiCall {
 
     public function getContactList()
     {
-
-        $response = $this->constructApiCall('https://www.google.com/m8/feeds/contacts/default/full/?max-results=500&alt=json');
+        $response = $this->constructGetCall('https://www.google.com/m8/feeds/contacts/default/full/?max-results=500&alt=json');
 
         return $response;
-
     }
 
     public function getDriveFileList()
     {
-
-        $response = $this->constructApiCall('https://www.googleapis.com/drive/v2/files');
+        $response = $this->constructGetCall('https://www.googleapis.com/drive/v2/files');
 
         return $response;
     }
 
-    public function constructApiCall($url)
+    public function constructGetCall($url)
     {
-
         $token = \Session::get('token');
 
         $response = $this->client->get($url, [
@@ -50,7 +48,6 @@ class ApiCall {
         ]);
 
         return $response;
-
     }
 
 }

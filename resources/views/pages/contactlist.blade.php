@@ -7,36 +7,36 @@
         {{\Auth::user()->email}}'s Contacts
     </h2>
 
-@if(isset($response['feed']['entry']))
+@if(isset($contacts))
     <div class="ui three column grid">
-        @foreach($response['feed']['entry'] as $p)
+        @foreach($contacts as $contact)
             <div class="column">
                 <div class="ui segment">
                     <div class="ui list">
-                        @if(!empty($p['title']['$t']))
+                        @if(!empty($contact->username))
                         <div class="item">
                             <div class="ui header" >
                                 <i class="user icon"></i>
-                                <div class="content"><h4 class="ui header">{{ $p['title']['$t'] }}</h4></div>
+                                <div class="content"><h4 class="ui header">{{ $contact->username }}</h4></div>
                             </div>
                         </div>
                         @endif
-                        @if(isset($p['gd$phoneNumber']))
+                        @if(isset($contact->phone))
                         <div class="item">
                             <i class="right triangle icon"></i>
                             <div class="content">
                                 <div class="ui large label">
-                                    <i class="text telephone icon"></i> {{ $p['gd$phoneNumber'][0]['$t'] }}
+                                    <i class="text telephone icon"></i> {{ $contact->phone }}
                                 </div>
                             </div>
                         </div>
                         @endif
-                        @if(isset($p['gd$email']))
+                        @if(isset($contact->email))
                         <div class="item">
                             <i class="right triangle icon"></i>
                             <div class="content">
                                 <div class="ui large label">
-                                    <i class="mail icon"></i> {{ $p['gd$email'][0]['address'] }}
+                                    <i class="mail icon"></i> {{ $contact->email }}
                                 </div>
                             </div>
                         </div>
