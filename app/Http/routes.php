@@ -12,15 +12,13 @@
 |
 */
 
-Route::get('/', 'MainController@index');
-
-Route::get('google_login', 'MainController@first');
-
 Route::get('login', 'AuthController@login');
 
 Route::get('logout', 'AuthController@logout');
 
-Route::get('google_welcome', 'MainController@back');
+Route::get('/', 'MainController@index');
+
+Route::get('dashboard', 'MainController@dashboard');
 
 Route::get('contact_list' , 'ApiController@getContactList');
 

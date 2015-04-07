@@ -7,19 +7,13 @@ class MainController extends Controller {
 
     public function index()
     {
-        if (\Auth::check()) return redirect('google_welcome');
-        return redirect('google_login');
-    }
-
-	public function first()
-    {
+        if (\Auth::check()) return view('google_welcomeback')->with('user', \Auth::user());
         return view('google_login');
     }
 
-    public function back()
+    public function dashboard()
     {
-
-        return view('google_welcomeback')->with('user', \Auth::user());
+        return view('pages.dashboard');
     }
 
 }

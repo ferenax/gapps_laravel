@@ -22,9 +22,9 @@
             </div>
         </div>
         <div class="extra content">
-            <a>
+            <a href="/contact_list">
                 <i class="user icon"></i>
-                22 Friends
+                {{ \Faker\Factory::create()->randomNumber(3) }} Contacts
             </a>
         </div>
     </div>

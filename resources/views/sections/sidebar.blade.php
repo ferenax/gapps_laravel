@@ -4,6 +4,10 @@
         <i class="home icon"></i>
         Accueil
     </a>
+    <a class="item" href="/dashboard">
+        <i class="dashboard icon"></i>
+        Tableau de bord
+    </a>
     <a class="item" href="/contact_list">
         <i class="users icon"></i>
         Liste des contacts

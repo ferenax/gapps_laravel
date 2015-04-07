@@ -6,6 +6,7 @@
         <i class="circular users icon"></i>
         {{\Auth::user()->email}}'s Contacts
     </h2>
+
 @if(isset($response['feed']['entry']))
     <div class="ui three column grid">
         @foreach($response['feed']['entry'] as $p)
@@ -40,6 +41,7 @@
                             </div>
                         </div>
                         @endif
+
                     </div>
                 </div>
             </div>
