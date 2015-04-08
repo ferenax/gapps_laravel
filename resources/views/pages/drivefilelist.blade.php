@@ -3,7 +3,7 @@
 @section('content')
 
     <h3 class="ui header">
-        <i class="users icon"></i>
+        <i class="disk outline icon"></i>
         <div class="content">
            Fichiers Google Drive de {{\Auth::user()->email}}
         </div>
@@ -13,7 +13,7 @@
         <div class="ui three column grid">
             @foreach($response['items'] as $p)
                 <div class="column">
-                    <div class="ui segment">
+                    <div class="ui blue piled segment">
                         <div class="ui list">
                             @if(!empty($p['title']))
                                 <div class="item">
