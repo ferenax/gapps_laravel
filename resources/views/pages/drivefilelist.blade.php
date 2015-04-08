@@ -59,7 +59,10 @@
             @endforeach
         </div>
     @else
-        <p>No files</p>
+        <div class="ui one column center aligned grid">
+            <div class="column">
+                <div class="ui red compact message">No files for {{\Auth::user()->email}}</div>
+            </div>
+        </div>
     @endif
-
 @stop

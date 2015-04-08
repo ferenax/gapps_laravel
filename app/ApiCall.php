@@ -1,13 +1,5 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: ferenan
- * Date: 3/31/15
- * Time: 2:56 PM
- */
-
-namespace App;
-
+<?php namespace App;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class ApiCall {
 
@@ -15,8 +7,6 @@ class ApiCall {
      * @var \GuzzleHttp\Client
      */
     private $client;
-
-
 
     public function __construct()
     {
@@ -49,5 +39,27 @@ class ApiCall {
 
         return $response;
     }
+
+    public function authDropbox()
+    {
+       // $response = $this->client->get('https://www.dropbox.com/1/oauth2/authorize?client_id='.env('DROPBOX_ID').'&response_type=code');
+
+        \Redirect::away('https://www.dropbox.com/1/oauth2/authorize?client_id='.env('DROPBOX_ID').'&response_type=code');
+
+
+    }
+
+
+    public function getDropboxInfo($token)
+    {
+        $response = $this->client->get('https://api.dropbox.com/1/account/info', [
+            'headers' => [
+                'Authorization' => 'Bearer ' . $token,
+            ],
+        ]);
+
+        return json_decode($response->getBody());
+    }
+
 
 }

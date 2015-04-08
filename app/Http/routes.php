@@ -23,3 +23,7 @@ Route::get('dashboard', 'MainController@dashboard');
 Route::get('contact_list' , 'ApiController@getContactList');
 
 Route::get('drive_filelist' , 'ApiController@getDriveFileList');
+
+Route::get('sync', 'ApiController@syncDropbox');
+
+Route::get('dropbox', 'ApiController@showDropbox');

@@ -1,4 +1,3 @@
-
 <div id="siteSidebar" class="ui visible left vertical labeled grey sidebar menu">
     <a class="item" href="/">
         <i class="home icon"></i>
@@ -13,15 +12,15 @@
         Liste des contacts
     </a>
     <a class="item" href="/drive_filelist">
-        <i class="file icon"></i>
+        <i class="disk outline icon"></i>
         Liste des fichiers sur Google Drive
+    </a>
+    <a class="item" href="/sync">
+        <i class="dropbox icon"></i>
+        Connecter Dropbox
     </a>
     <a class="item">
         <i class="settings icon"></i>
         Paramètres
     </a>
 </div>
-
-<script type="text/javascript">
-
-</script>

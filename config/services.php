@@ -35,10 +35,13 @@ return [
 	],
 
     'google' => [
-        'client_id'  => env('CLIENT_ID', ''),
-        'client_secret'  => env('CLIENT_SECRET', ''),
-        'redirect' => 'http://localhost:8000/login',
-
-    ]
-
+        'client_id'  => env('GOOGLE_ID'),
+        'client_secret'  => env('GOOGLE_SECRET'),
+        'redirect' => env('GOOGLE_REDIRECT_URI'),
+    ],
+    'dropbox' => [
+        'client_id'  => env('DROPBOX_ID'),
+        'client_secret'  => env('DROPBOX_SECRET'),
+        'redirect' => env('DROPBOX_REDIRECT_URI'),
+    ],
 ];

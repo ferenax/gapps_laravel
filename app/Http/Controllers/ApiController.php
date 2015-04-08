@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\ApiCall;
 use App\Contact;
 use App\Repositories\ContactRepository;
-
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class ApiController extends Controller {
 
@@ -20,7 +20,6 @@ private $contacts;
         $this->contacts = $contacts;
     }
 
-
     public function getContactList(ApiCall $apiCall)
     {
         $response = $apiCall->getContactList()->getBody();
@@ -32,7 +31,6 @@ private $contacts;
         $contacts = Contact::where('user_id', '=', \Auth::user()->id )->paginate(12);
 
         return view('pages.contactlist')->with('contacts', $contacts);
-
     }
 
     public function getDriveFileList(ApiCall $apiCall)
@@ -72,8 +70,20 @@ private $contacts;
                 $this->contacts->findByUsernameOrCreate($var);
             }
         }
-
-
     }
 
+    public function syncDropbox()
+    {
+       return new RedirectResponse('https://www.dropbox.com/1/oauth2/authorize?client_id='.env('DROPBOX_ID').'&response_type=token&redirect_uri='.env('DROPBOX_REDIRECT_URI'));
+    }
+
+    public function showDropbox(ApiCall $apiCall, Request $request)
+    {
+       $token = $_REQUEST['access_token'];
+
+        dd($token);
+
+        dd($apiCall->getDropboxInfo($token));
+
+    }
 }

@@ -136,11 +136,11 @@ return [
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Html\HtmlServiceProvider',
-        'Laravel\Socialite\SocialiteServiceProvider',
+        'SocialiteProviders\Manager\ServiceProvider',
 
-		/*
-		 * Application Service Providers...
-		 */
+        /*
+         * Application Service Providers...
+         */
 		'App\Providers\AppServiceProvider',
 		'App\Providers\BusServiceProvider',
 		'App\Providers\ConfigServiceProvider',
