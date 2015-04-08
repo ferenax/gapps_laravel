@@ -29,7 +29,7 @@ private $contacts;
 
         $this->storeContactList($JSONarray);
 
-        $contacts = Contact::where('user_id', '=', \Auth::user()->id )->get();
+        $contacts = Contact::where('user_id', '=', \Auth::user()->id )->paginate(12);
 
         return view('pages.contactlist')->with('contacts', $contacts);
 
@@ -42,7 +42,6 @@ private $contacts;
         $JSONarray=json_decode($response,true);
 
         return view('pages.drivefilelist')->with('response', $JSONarray);
-
     }
 
     public function storeContactList($response)
@@ -55,19 +54,19 @@ private $contacts;
                 {
                    $var['name'] = $p['title']['$t'];
                 }
-                else $var['name'] = 'No name';
+                else $var['name'] = '';
 
                 if(isset($p['gd$phoneNumber']))
                 {
                     $var['phone'] = $p['gd$phoneNumber'][0]['$t'];
                 }
-                else $var['phone'] = 'No phone';
+                else $var['phone'] = '';
 
                 if(isset($p['gd$email']))
                 {
                     $var['email'] = $p['gd$email'][0]['address'];
                 }
-                else $var['email']= 'No mail';
+                else $var['email']= '';
 
                 if(isset($var))
                 $this->contacts->findByUsernameOrCreate($var);

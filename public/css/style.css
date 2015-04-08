@@ -65,7 +65,3 @@ body.pushable>.pusher {
     margin-top: 2px;
 }
 
-@media all and (max-width: 630px) {
-    #siteBanner{display: none!important;}
-    
-}

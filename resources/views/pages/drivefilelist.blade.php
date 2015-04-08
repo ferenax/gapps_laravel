@@ -2,11 +2,12 @@
 
 @section('content')
 
-    <h2 class="ui center aligned icon header siteBody">
-        <i class="circular file icon"></i>
-        {{\Auth::user()->email}}'s Drive File List
-    </h2>
-
+    <h3 class="ui header">
+        <i class="users icon"></i>
+        <div class="content">
+           Fichiers Google Drive de {{\Auth::user()->email}}
+        </div>
+    </h3>
 
     @if(isset($response['items']))
         <div class="ui three column grid">

@@ -1,6 +1,7 @@
 <?php
 namespace App;
-
+use App\Contact;
+use App\Repositories\ContactRepository;
 
 class Helpers {
 
@@ -21,5 +22,12 @@ class Helpers {
         $url = explode("?", $url);
         return $url[0];
     }
+
+    public function getContactsNumber()
+    {
+       return count(Contact::where('user_id', '=', \Auth::user()->id )->get());
+    }
+
+
 
 }

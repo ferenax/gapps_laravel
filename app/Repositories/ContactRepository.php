@@ -9,7 +9,7 @@ class ContactRepository {
 
         if ($contact)
         {
-            if ($contact->email == 'No mail') $contact = Contact::where('phone', '=', $contactData['phone'])->first();
+            if ($contact->email == '') $contact = Contact::where('phone', '=', $contactData['phone'])->first();
         }
 
         if(isset($contact)) $this->checkIfUserNeedsUpdating($contactData, $contact);

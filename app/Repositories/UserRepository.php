@@ -10,15 +10,11 @@ class UserRepository {
         if(isset($user)) $this->checkIfUserNeedsUpdating($userData, $user);
 
         return User::firstOrCreate([
-
             'username' => $userData->getName(),
             'email' => $userData->getEmail(),
             'avatar' => $userData->getAvatar(),
             'gid' => $userData->getId(),
-
         ]);
-
-
 
     }
 
