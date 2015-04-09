@@ -74,16 +74,24 @@ private $contacts;
 
     public function syncDropbox()
     {
-       return new RedirectResponse('https://www.dropbox.com/1/oauth2/authorize?client_id='.env('DROPBOX_ID').'&response_type=token&redirect_uri='.env('DROPBOX_REDIRECT_URI'));
+        if(\Session::get('dstate') !== 'synced') {
+            return new RedirectResponse('https://www.dropbox.com/1/oauth2/authorize?client_id=' . env('DROPBOX_ID') . '&response_type=code&redirect_uri=' . env('DROPBOX_REDIRECT_URI'));
+        }
+        else return redirect('/dropbox');
     }
 
     public function showDropbox(ApiCall $apiCall, Request $request)
     {
-       $token = $_REQUEST['access_token'];
 
-        dd($token);
+        if(\Session::get('dstate') !== 'synced')
+        {
+            if($request->has('code'))
+            {
+                \Session::put('dtoken', $apiCall->getToken($request->get('code'))->access_token );
+                \Session::put('dstate', 'synced');
+            }
+        }
 
-        dd($apiCall->getDropboxInfo($token));
-
+        dd($apiCall->getDropboxInfo());
     }
 }

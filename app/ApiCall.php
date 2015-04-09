@@ -50,16 +50,39 @@ class ApiCall {
     }
 
 
-    public function getDropboxInfo($token)
+    public function getDropboxInfo()
     {
         $response = $this->client->get('https://api.dropbox.com/1/account/info', [
             'headers' => [
-                'Authorization' => 'Bearer ' . $token,
+                'Authorization' => 'Bearer ' . \Session::get('dtoken'),
             ],
         ]);
 
         return json_decode($response->getBody());
     }
 
+    public function getToken($code)
+    {
+        $response = $this->client->post($this->getTokenUrl(), [
+            'headers' => ['Accept' => 'application/json'],
+            'body' => $this->getTokenFields($code),
+        ]);
+
+        return json_decode($response->getBody());
+    }
+
+    protected function getTokenFields($code)
+    {
+        return [
+            'grant_type' => 'authorization_code',
+            'client_id' => env('DROPBOX_ID'), 'client_secret' => env('DROPBOX_SECRET'),
+            'code' => $code, 'redirect_uri' => env('DROPBOX_REDIRECT_URI')
+        ];
+    }
+
+    private function getTokenUrl()
+    {
+        return 'https://api.dropbox.com/1/oauth2/token';
+    }
 
 }
