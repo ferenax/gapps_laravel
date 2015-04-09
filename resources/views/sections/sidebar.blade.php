@@ -17,7 +17,7 @@
     </a>
     <a class="item" href="/sync">
         <i class="dropbox icon"></i>
-        Connecter Dropbox
+        Dropbox
     </a>
     <a class="item">
         <i class="settings icon"></i>

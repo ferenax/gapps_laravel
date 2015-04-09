@@ -24,9 +24,7 @@ private $contacts;
     {
         $response = $apiCall->getContactList()->getBody();
 
-        $JSONarray=json_decode($response,true);
-
-        $this->storeContactList($JSONarray);
+        $this->storeContactList(json_decode($response,true));
 
         $contacts = Contact::where('user_id', '=', \Auth::user()->id )->paginate(12);
 
@@ -37,9 +35,7 @@ private $contacts;
     {
         $response = $apiCall->getDriveFileList()->getBody();
 
-        $JSONarray=json_decode($response,true);
-
-        return view('pages.drivefilelist')->with('response', $JSONarray);
+        return view('pages.drivefilelist')->with('response', json_decode($response,true));
     }
 
     public function storeContactList($response)
@@ -92,6 +88,6 @@ private $contacts;
             }
         }
 
-        dd($apiCall->getDropboxInfo());
+        return view('pages.dropboxinfo')->with('info', $apiCall->getDropboxInfo());
     }
 }

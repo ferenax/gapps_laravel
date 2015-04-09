@@ -49,7 +49,6 @@ class ApiCall {
 
     }
 
-
     public function getDropboxInfo()
     {
         $response = $this->client->get('https://api.dropbox.com/1/account/info', [
@@ -80,7 +79,7 @@ class ApiCall {
         ];
     }
 
-    private function getTokenUrl()
+    protected function getTokenUrl()
     {
         return 'https://api.dropbox.com/1/oauth2/token';
     }
