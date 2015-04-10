@@ -40,15 +40,6 @@ class ApiCall {
         return $response;
     }
 
-    public function authDropbox()
-    {
-       // $response = $this->client->get('https://www.dropbox.com/1/oauth2/authorize?client_id='.env('DROPBOX_ID').'&response_type=code');
-
-        \Redirect::away('https://www.dropbox.com/1/oauth2/authorize?client_id='.env('DROPBOX_ID').'&response_type=code');
-
-
-    }
-
     public function getDropboxInfo()
     {
         $response = $this->client->get('https://api.dropbox.com/1/account/info', [
@@ -58,6 +49,17 @@ class ApiCall {
         ]);
 
         return json_decode($response->getBody());
+    }
+
+    public function dropboxList()
+    {
+        $copy = $this->client->get('https://api.dropbox.com/1/metadata/auto/', [
+            'headers' => [
+                'Authorization' => 'Bearer ' . \Session::get('dtoken'),
+            ],
+        ]);
+
+        return json_decode($copy->getBody());
     }
 
     public function getToken($code)

@@ -44,7 +44,7 @@ class AuthenticateUser {
 
     public function logout()
     {
-
+        \Session::put('dstate', 'unsynced');
         \Auth::logout();
 
         return redirect('/');

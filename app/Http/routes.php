@@ -27,3 +27,5 @@ Route::get('drive_filelist' , 'ApiController@getDriveFileList');
 Route::get('sync', 'ApiController@syncDropbox');
 
 Route::get('dropbox', 'ApiController@showDropbox');
+
+Route::get('dropbox_filelist', 'ApiController@listDropboxFiles');

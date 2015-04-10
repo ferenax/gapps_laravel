@@ -71,7 +71,7 @@ private $contacts;
     public function syncDropbox()
     {
         if(\Session::get('dstate') !== 'synced') {
-            return new RedirectResponse('https://www.dropbox.com/1/oauth2/authorize?client_id=' . env('DROPBOX_ID') . '&response_type=code&redirect_uri=' . env('DROPBOX_REDIRECT_URI'));
+            return new RedirectResponse('https://www.dropbox.com/1/oauth2/authorize?client_id=' . env('DROPBOX_ID') . '&response_type=code&force_reapprove=false&redirect_uri=' . env('DROPBOX_REDIRECT_URI'));
         }
         else return redirect('/dropbox');
     }
@@ -85,9 +85,17 @@ private $contacts;
             {
                 \Session::put('dtoken', $apiCall->getToken($request->get('code'))->access_token );
                 \Session::put('dstate', 'synced');
+                \Session::put('dinfo', $apiCall->getDropboxInfo());
             }
         }
 
-        return view('pages.dropboxinfo')->with('info', $apiCall->getDropboxInfo());
+        return view('pages.dropboxinfo')->with('info', \Session::get('dinfo'));
+    }
+
+    public function listDropboxFiles(ApiCall $apiCall)
+    {
+        $contents = $apiCall->dropboxList();
+
+        return view('pages.dropboxlist')->with('info', \Session::get('dinfo'))->with('list', $contents);
     }
 }
