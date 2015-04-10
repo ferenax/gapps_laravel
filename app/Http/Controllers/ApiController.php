@@ -98,4 +98,11 @@ private $contacts;
 
         return view('pages.dropboxlist')->with('info', \Session::get('dinfo'))->with('list', $contents);
     }
+
+    public function fileDownload(ApiCall $apiCall, Request $request)
+    {
+        $path = $request->get('path');
+
+       dd($apiCall->dropboxFileTransfer($path));
+    }
 }

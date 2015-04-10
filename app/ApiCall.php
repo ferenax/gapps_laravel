@@ -1,5 +1,6 @@
 <?php namespace App;
-use Symfony\Component\HttpFoundation\RedirectResponse;
+use \GuzzleHttp\Client as GuzzleClient;
+use GuzzleHttp\Stream\Stream as Stream;
 
 class ApiCall {
 
@@ -10,7 +11,7 @@ class ApiCall {
 
     public function __construct()
     {
-        $this->client= new \GuzzleHttp\Client();
+        $this->client= new GuzzleClient();
     }
 
     public function getContactList()
@@ -84,6 +85,25 @@ class ApiCall {
     protected function getTokenUrl()
     {
         return 'https://api.dropbox.com/1/oauth2/token';
+    }
+
+    public function dropboxFileTransfer($path)
+    {
+       $local = fopen('files'.$path, 'w');
+
+        $file = $this->client->get('https://api-content.dropbox.com/1/files/auto'.$path, [
+            'headers' => [
+                'Authorization' => 'Bearer ' . \Session::get('dtoken'),
+            ],
+        ]);
+
+        $stream = Stream::factory($file->getBody()->__toString());
+
+        $dest = Stream::factory($local);
+
+        $dest->write($stream);
+
+        return 'ok';
     }
 
 }

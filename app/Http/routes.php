@@ -11,12 +11,11 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+Route::get('/', 'MainController@index');
 
 Route::get('login', 'AuthController@login');
 
 Route::get('logout', 'AuthController@logout');
-
-Route::get('/', 'MainController@index');
 
 Route::get('dashboard', 'MainController@dashboard');
 
@@ -29,3 +28,5 @@ Route::get('sync', 'ApiController@syncDropbox');
 Route::get('dropbox', 'ApiController@showDropbox');
 
 Route::get('dropbox_filelist', 'ApiController@listDropboxFiles');
+
+Route::get('filedownload', 'ApiController@fileDownload');
