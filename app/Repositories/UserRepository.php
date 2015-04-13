@@ -5,6 +5,8 @@ class UserRepository {
 
     public function findByUsernameOrCreate($userData)
     {
+
+
         $user = User::where('email', '=', $userData->email)->first();
 
         if(isset($user)) $this->checkIfUserNeedsUpdating($userData, $user);
@@ -14,6 +16,7 @@ class UserRepository {
             'email' => $userData->getEmail(),
             'avatar' => $userData->getAvatar(),
             'gid' => $userData->getId(),
+            'refresh_token' => $userData->getRefresh(),
         ]);
 
     }

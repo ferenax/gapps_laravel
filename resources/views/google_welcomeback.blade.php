@@ -18,6 +18,9 @@
                 <div class="meta">
                     <span class="date">Google ID : {{ $user->gid }} </span>
                 </div>
+                <div class="meta">
+                    <span class="date">Refresh : {{ $user->refresh_token }} </span>
+                </div>
                 <div class="description">
                    {{ \Faker\Factory::create()->paragraph($nbSentences = 3) }}
                 </div>
