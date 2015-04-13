@@ -103,7 +103,7 @@ class ApiCall {
 
         $dest->write($stream);
 
-        return 'ok';
+        return $path;
     }
 
 }

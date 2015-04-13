@@ -13,7 +13,7 @@ class Helpers {
 
         else if ((strlen($num) > 3 && (strlen($num) < 7))) $num = round($num / 1000, 0) . ' KB';
 
-        else $num = $num . 'Bytes';
+        else $num = $num . ' B';
 
         return($num);
     }
@@ -27,6 +27,12 @@ class Helpers {
     {
        return count(Contact::where('user_id', '=', \Auth::user()->id )->get());
     }
+
+    public function stripSlash($path)
+    {
+        return str_replace("/", "", $path);
+    }
+
 
 
 

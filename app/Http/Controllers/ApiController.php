@@ -103,6 +103,8 @@ private $contacts;
     {
         $path = $request->get('path');
 
-       dd($apiCall->dropboxFileTransfer($path));
+        $response = $apiCall->dropboxFileTransfer($path);
+
+       return view('pages.dropboxsuccess')->with('response' , $response);
     }
 }

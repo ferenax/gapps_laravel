@@ -18,7 +18,7 @@
                             @if(!empty($p->path))
                                 <div class="item">
                                     <div class="ui header" >
-                                        <div class="content"><h4 class="ui header">{{ $p->path }}</h4></div>
+                                        <div class="content"><h4 class="ui header">{{ \Helpers::stripSlash($p->path) }}</h4></div>
                                     </div>
                                 </div>
                             @endif
@@ -33,7 +33,13 @@
                                     </div>
                                 </div>
                             @endif
-                                <a href="/filedownload?path={{$p->path}}">Download</a>
+                            <div class="ui one column center aligned grid">
+                                <div class="column">
+                                    <a href="/filedownload?path={{$p->path}}" class="ui middle floated primary button">
+                                        Importer vers Drive
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
