@@ -15,7 +15,7 @@
             <div class="three column row">
                 <div class="left floated right aligned column">
                     <h2 class="ui header">
-                        <a href="/"><img class="homeLink" alt="Google" src="//www.google.com/images/logos/google_logo_41.png" >
+                        <a href="/"><img class="homeLink" alt="Google" src="/images/Google.png" >
                         <div class="content homeLink">
                             <div id="appsfw">Apps For Work</div>
                         </div>

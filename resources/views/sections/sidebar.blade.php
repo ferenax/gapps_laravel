@@ -19,10 +19,6 @@
         <i class="dropbox icon"></i>
         Dropbox
     </a>
-    <a class="item" href="/dropbox_filelist">
-        <i class="dropbox icon"></i>
-        Liste des fichiers sur Dropbox
-    </a>
     <a class="item">
         <i class="settings icon"></i>
         Paramètres

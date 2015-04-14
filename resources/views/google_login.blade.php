@@ -1,7 +1,7 @@
 @extends('master')
 
 @section('banners')
-    <img class="ui image" src="images/gapps_banner.jpg">
+    <img class="ui image" src="images/Banner-1.jpg">
 @stop
 
 @section('content')

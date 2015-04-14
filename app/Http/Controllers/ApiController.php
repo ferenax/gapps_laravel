@@ -73,7 +73,7 @@ private $contacts;
         if(\Session::get('dstate') !== 'synced') {
             return new RedirectResponse('https://www.dropbox.com/1/oauth2/authorize?client_id=' . env('DROPBOX_ID') . '&response_type=code&force_reapprove=false&redirect_uri=' . env('DROPBOX_REDIRECT_URI'));
         }
-        else return redirect('/dropbox');
+        else return redirect('/dropbox_filelist');
     }
 
     public function showDropbox(ApiCall $apiCall, Request $request)
@@ -89,14 +89,12 @@ private $contacts;
             }
         }
 
-        return view('pages.dropboxinfo')->with('info', \Session::get('dinfo'));
-    }
-
-    public function listDropboxFiles(ApiCall $apiCall)
-    {
         $contents = $apiCall->dropboxList();
 
-        return view('pages.dropboxlist')->with('info', \Session::get('dinfo'))->with('list', $contents);
+        return view('pages.dropboxlist')->with([
+            'info' => \Session::get('dinfo'),
+            'list'=> $contents,
+            ]);
     }
 
     public function fileDownload(ApiCall $apiCall, Request $request)

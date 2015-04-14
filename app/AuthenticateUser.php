@@ -27,19 +27,13 @@ class AuthenticateUser {
      */
     public function execute($hasCode, AuthenticateUserListener $listener)
     {
-
         if ( ! $hasCode ) return $this->getAuthorizationFirst();
 
-        $var = $this->getGoogleUser();
-
-        $user = $this->users->findByUsernameOrCreate($var);
-
-        \Session::put('token', $var->token );
+        $user = $this->users->findByUsernameOrCreate($this->getGoogleUser());
 
         \Auth::login($user, true);
 
         return $listener->userHasLoggedIn($user);
-
     }
 
     public function logout()
@@ -48,20 +42,15 @@ class AuthenticateUser {
         \Auth::logout();
 
         return redirect('/');
-
-
     }
 
     private function getAuthorizationFirst()
     {
-
         return \Socialize::with('google')->redirect();
-
     }
 
     private function getGoogleUser()
     {
-
         return \Socialize::with('google')->user();
     }
 
