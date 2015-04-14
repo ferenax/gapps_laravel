@@ -1,9 +1,10 @@
 <html>
 <head>
-    <title>Gapps Console</title>
+    <title>Google Apps for Work Console</title>
 
     <link rel="stylesheet" href="/semantic/semantic.min.css">
     <link rel="stylesheet" href="/css/style.css"/>
+    <link rel="shortcut icon" href="{{{ asset('images/favicon.png') }}}">
 </head>
 <body>
 

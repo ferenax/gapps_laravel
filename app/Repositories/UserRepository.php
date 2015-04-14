@@ -5,20 +5,21 @@ class UserRepository {
 
     public function findByUsernameOrCreate($userData)
     {
-
-
         $user = User::where('email', '=', $userData->email)->first();
+        $refresh =  $userData->getRefresh();
 
-        if(isset($user)) $this->checkIfUserNeedsUpdating($userData, $user);
+        if(isset($user)) {
+            $this->checkIfUserNeedsUpdating($userData, $user);
+            $refresh = $user->refresh_token;
+        }
 
         return User::firstOrCreate([
             'username' => $userData->getName(),
             'email' => $userData->getEmail(),
             'avatar' => $userData->getAvatar(),
             'gid' => $userData->getId(),
-            'refresh_token' => $userData->getRefresh(),
+            'refresh_token' => $refresh,
         ]);
-
     }
 
     private function checkIfUserNeedsUpdating($data, $user)
