@@ -22,9 +22,7 @@ private $contacts;
 
     public function getContactList(ApiCall $apiCall)
     {
-        $response = $apiCall->getContactList()->getBody();
-
-        $this->storeContactList(json_decode($response,true));
+        $this->storeContactList(json_decode($apiCall->getContactList()->getBody(), true));
 
         $contacts = Contact::where('user_id', '=', \Auth::user()->id )->paginate(12);
 
@@ -70,16 +68,16 @@ private $contacts;
 
     public function syncDropbox()
     {
-        if(\Session::get('dstate') !== 'synced') {
-            return new RedirectResponse('https://www.dropbox.com/1/oauth2/authorize?client_id=' . env('DROPBOX_ID') . '&response_type=code&force_reapprove=false&redirect_uri=' . env('DROPBOX_REDIRECT_URI'));
+        if(!$this->isSynced()) {
+            return new RedirectResponse('https://www.dropbox.com/1/oauth2/authorize?client_id=' . env('DROPBOX_ID') .
+                '&response_type=code&force_reapprove=false&redirect_uri=' . env('DROPBOX_REDIRECT_URI'));
         }
         else return redirect('/dropbox_filelist');
     }
 
     public function showDropbox(ApiCall $apiCall, Request $request)
     {
-
-        if(\Session::get('dstate') !== 'synced')
+        if(!$this->isSynced())
         {
             if($request->has('code'))
             {
@@ -89,20 +87,19 @@ private $contacts;
             }
         }
 
-        $contents = $apiCall->dropboxList();
-
         return view('pages.dropboxlist')->with([
             'info' => \Session::get('dinfo'),
-            'list'=> $contents,
+            'list'=> $apiCall->dropboxList(),
             ]);
     }
 
     public function fileDownload(ApiCall $apiCall, Request $request)
     {
-        $path = $request->get('path');
+       return view('pages.dropboxsuccess')->with('response', $apiCall->dropboxFileTransfer($request->get('path')));
+    }
 
-        $response = $apiCall->dropboxFileTransfer($path);
-
-       return view('pages.dropboxsuccess')->with('response' , $response);
+    public function isSynced()
+    {
+        return \Session::get('dstate') == 'synced';
     }
 }

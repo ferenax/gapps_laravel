@@ -30,7 +30,8 @@ class ApiCall {
 
     public function constructGetCall($url)
     {
-        $token = \Session::get('token');
+
+        $token = $this->checkTokenOrGetNewOne();
 
         $response = $this->client->get($url, [
             'headers' => [
@@ -97,13 +98,30 @@ class ApiCall {
             ],
         ]);
 
-        $stream = Stream::factory($file->getBody()->__toString());
-
-        $dest = Stream::factory($local);
-
-        $dest->write($stream);
+        Stream::factory($local)->write(Stream::factory($file->getBody()->__toString()));
 
         return $path;
+    }
+
+    private function checkTokenOrGetNewOne()
+    {
+        if(\Session::get('datecon')->copy()->addHour()->lt(\Carbon::now()))
+        {
+            $response = $this->client->post('https://www.googleapis.com/oauth2/v3/token', [
+                'headers' => ['Accept' => 'application/json'],
+                'body' =>  [
+                    'grant_type' => 'refresh_token',
+                    'client_id' => env('GOOGLE_ID'),
+                    'client_secret' => env('GOOGLE_SECRET'),
+                    'refresh_token' => \Auth::user()->refresh_token,
+                ]
+            ]);
+
+            \Session::put('token' , json_decode($response->getBody())->access_token);
+            \Session::put('datecon', \Carbon::now());
+        }
+
+        return \Session::get('token');
     }
 
 }

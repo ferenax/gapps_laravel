@@ -18,7 +18,10 @@
                         <span class="date">Date d'inscription : {{ date('l, d F Y', strtotime($user->created_at)) }}</span>
                     </div>
                     <div class="meta">
-                        <span class="date">Google ID : {{ $user->gid }} </span>
+                        <span>Google ID : {{ $user->gid }} </span>
+                    </div>
+                    <div class="meta">
+                        <span> Token Date : {{ \Session::get('datecon') }}</span>
                     </div>
                     <div class="description">
                        {{ \Faker\Factory::create()->paragraph($nbSentences = 3) }}

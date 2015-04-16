@@ -10,7 +10,7 @@
 
 @include('sections.header')
 @if(\Auth::check())
-@include('sections.sidebar')
+    @include('sections.sidebar')
 @endif
 <div id="siteContent">
     @yield('banners')
@@ -22,7 +22,7 @@
         </div>
     </div>
 </div>
-@yield('footer')
+
 <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="/semantic/semantic.min.js" type="text/javascript"></script>
 
@@ -34,6 +34,10 @@
                 .sidebar('setting', { dimPage: false })
                 .sidebar('toggle');
     });
+
+    $('.menu .item')
+            .tab()
+    ;
 
 </script>
 </body>

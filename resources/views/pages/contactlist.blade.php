@@ -83,7 +83,7 @@
 @else
 <div class="ui one column center aligned grid">
     <div class="column">
-        <div class="ui red compact message">No contact entry for {{\Auth::user()->email}}</div>
+        <div class="ui huge red compact message">Pas de contacts pour {{\Auth::user()->email}}</div>
     </div>
 </div>
 @endif
