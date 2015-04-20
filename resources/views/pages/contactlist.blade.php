@@ -65,7 +65,7 @@
             <a href="{{ $contacts->previousPageUrl() }}" class="icon item">
                 <i class="left arrow icon"></i>
             </a>
-            <a href="{{ $contacts->currentPage() }}" class="active item">
+            <a class="active item">
                 {{ $contacts->currentPage() }}
             </a>
             <a class="disabled item">

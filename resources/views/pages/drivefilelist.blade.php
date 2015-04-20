@@ -13,7 +13,7 @@
         <div class="ui three column grid">
             @foreach($response['items'] as $p)
                 <div class="column">
-                    <div class="ui blue piled segment">
+                    <div class="ui green piled segment">
                         <div class="ui list">
                             @if(!empty($p['title']))
                                 <div class="item">

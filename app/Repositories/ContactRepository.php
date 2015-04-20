@@ -20,7 +20,6 @@ class ContactRepository {
             'email' => $contactData['email'],
             'phone' => $contactData['phone'],
             'user_id' => \Auth::user()->id,
-           // 'gid' => $contactData->getBid(),
 
         ]);
 

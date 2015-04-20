@@ -1,6 +1,9 @@
 @extends('master')
 
 @section('content')
+    <div class="ui horizontal divider">
+        Tableau de bord
+    </div>
     <div class="ui three column center aligned grid">
         <div class="column">
             <div class="ui horizontal segment">

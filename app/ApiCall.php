@@ -105,6 +105,9 @@ class ApiCall {
 
     private function checkTokenOrGetNewOne()
     {
+        if(\Session::get('datecon') == null)
+            \Session::put('datecon', \Carbon::now()->subHours(2));
+
         if(\Session::get('datecon')->copy()->addHour()->lt(\Carbon::now()))
         {
             $response = $this->client->post('https://www.googleapis.com/oauth2/v3/token', [

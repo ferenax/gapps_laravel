@@ -70,7 +70,7 @@ private $contacts;
     {
         if(!$this->isSynced()) {
             return new RedirectResponse('https://www.dropbox.com/1/oauth2/authorize?client_id=' . env('DROPBOX_ID') .
-                '&response_type=code&force_reapprove=false&redirect_uri=' . env('DROPBOX_REDIRECT_URI'));
+                '&response_type=code&state='.csrf_token().'&redirect_uri=' . env('DROPBOX_REDIRECT_URI'));
         }
         else return redirect('/dropbox_filelist');
     }
@@ -79,7 +79,7 @@ private $contacts;
     {
         if(!$this->isSynced())
         {
-            if($request->has('code'))
+            if($request->has('code') && $request->get('state') == csrf_token())
             {
                 \Session::put('dtoken', $apiCall->getToken($request->get('code'))->access_token );
                 \Session::put('dstate', 'synced');
