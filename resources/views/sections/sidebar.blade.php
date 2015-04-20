@@ -19,6 +19,10 @@
         <i class="dropbox icon"></i>
         Dropbox
     </a>
+    <a class="item" href="/signature">
+        <i class="italic icon"></i>
+        Signatures
+    </a>
     <a class="item">
         <i class="settings icon"></i>
         Paramètres

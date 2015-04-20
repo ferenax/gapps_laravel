@@ -81,7 +81,7 @@ private $contacts;
         {
             if($request->has('code') && $request->get('state') == csrf_token())
             {
-                \Session::put('dtoken', $apiCall->getToken($request->get('code'))->access_token );
+                \Session::put('dtoken', $apiCall->getToken($request->get('code')));
                 \Session::put('dstate', 'synced');
                 \Session::put('dinfo', $apiCall->getDropboxInfo());
             }
@@ -96,6 +96,13 @@ private $contacts;
     public function fileDownload(ApiCall $apiCall, Request $request)
     {
        return view('pages.dropboxsuccess')->with('response', $apiCall->dropboxFileTransfer($request->get('path')));
+    }
+
+    public function showSignature(ApiCall $apiCall)
+    {
+        $sign = json_decode($apiCall->getSignature()->getBody(), true);
+
+        return view('pages.signature')->with('signature', $sign['entry']['apps$property'][0]['value']);
     }
 
     public function isSynced()

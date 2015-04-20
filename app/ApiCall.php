@@ -71,7 +71,7 @@ class ApiCall {
             'body' => $this->getTokenFields($code),
         ]);
 
-        return json_decode($response->getBody());
+        return json_decode($response->getBody())->access_token;
     }
 
     protected function getTokenFields($code)
@@ -125,6 +125,18 @@ class ApiCall {
         }
 
         return \Session::get('token');
+    }
+
+    public function getSignature()
+    {
+
+        $response = $this->client->get('https://apps-apis.google.com/a/feeds/emailsettings/2.0/gapps-morocco.org/amineb/signature?alt=json', [
+            'headers' => [
+                'Authorization' => 'Bearer ' . \Session::get('token'),
+            ],
+        ]);
+
+        return $response;
     }
 
 }

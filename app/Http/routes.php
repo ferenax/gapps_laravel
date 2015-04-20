@@ -28,3 +28,5 @@ Route::get('sync', 'ApiController@syncDropbox');
 Route::get('dropbox_filelist', 'ApiController@showDropbox');
 
 Route::get('filedownload', 'ApiController@fileDownload');
+
+Route::get('signature', 'ApiController@showSignature');
